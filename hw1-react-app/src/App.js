@@ -1,7 +1,10 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
+import { Count } from './Count';
+import { Form } from './form';
 import './App.css';
+
 
 function App() {
   return (
@@ -12,6 +15,8 @@ function App() {
       <Main />
       <Header />
       <Main />
+      <Count />
+      <Form />
     </>
 
   );
