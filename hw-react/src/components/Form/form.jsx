@@ -1,49 +1,61 @@
+import { useEffect } from "react"
 import { useState } from "react"
+import Info from "../Info"
 
 export const Form = () => {
-    const [form, setForm] = useState({ user:{err:''}}) //нужно для сбора формы
-    const [user, setUser] = useState('')
-    const [password, setPassword] = useState('')
+    const [user, setUser] = useState({
+        name:"",
+        password:"",
+        age:""
+    })
+    const [errors, setErrors] = useState({
+        name:"",
+        password:"",
+        age:""
+    })
+    const [info, setInfo] = useState([])
+    useEffect(() => { //будет вызываться при каждом изменении
+        if (errors.name === '' && errors.password === '' && errors.age === '') {
+            setInfo([...info, user])
+            setUser ({
+                name:"",
+                password:"",
+                age:""
+            })
+        }
+        
+    }, [errors]) //если пустой массив, то будет вызываться только 1 раз после маунтинга (после build'a); если в массиве есть зависимость какая-то, то useEffect будет вызываться при изменнии зависимости
 
     const handleSubmit = (e) => { //какой-то метод; пока непонятно зачем это; e - сокращение от event
         e.preventDefault() //останавливает дефолтовое событие -> в данном случае форма при отправе автоматом перезагружает страницу, а этот метод помогает избежать перезагрузки
-        if (form.user.length < 3) {
-            setForm({
-                ...form,
-                user: {
-                    ...form.user,
-                    err: 'Имя пользователя должно быть не короче 3 символов'
-                },
-                password: {
-                    ...form.password,
-                    err: 'Пароль не может быть короче 10 символов'
-                }
-            })
-        }
+         setErrors(  {
+            name: user.name.length < 3 ? "Имя должно быть не короче 3 букв" : '',
+            password: user.password.length < 10 ? "Минимальная длина пароля: 10 символов": '',
+            age: +user.age < 18 ? "Вам должно быть больше 18" : '' // + нужен чтобы преобразовать стрингу в число
+        })
     }
 
-    const handleChange = (e) => { //динамический обработчик событий зачем-то
-        const element = e.target.name
-        const value = e.target.value
-        setForm({
-            ...form,
-            [element]: {
-                value,
-                err: null
-            }
+    const handleChange = ({target:{name, value}}) => { //динамический обработчик событий зачем-то
+        setUser({
+            ...user, [name]: value //...user копирует наш объект, чтобы потом изменить в нем только поле name
         })
     }
     
     return (
-        <div className="form">
-            <form onSubmit={handleSubmit}> {/* в момент отправки данных вызывается функция handleSubmit */}
+        <div className="wrapper">
+            <form> {/* в момент отправки данных вызывается функция handleSubmit */}
                 <h1 className="formTitle">Регистрация</h1>
-                <input className="formInput_name" type="text" name="user" value={user} placeholder="Введите имя" onChange={(e) => handleChange()}/> {/* onChange - событие инпута - на каждое нажатие вызывается функция */}
-                <p className="formError"> {form.user.err} </p>
-                <input className="formInput_password" type="password" name="password" value={password} placeholder="Введите пароль" onChange={(e) => handleChange()} />
-                <p className="formError">{form.user.err}</p>
-                <button className="formBtn" type="submit">Готово</button>
+                <div className="form">
+                <p className="formInput_title">Имя пользователя <input className="formInput_name" id="user" type="text" name="name" value={user.name} placeholder="Введите имя" onChange={handleChange}/></p> {/* onChange - событие инпута - на каждое нажатие вызывается функция */}
+                <p className="formError"> {errors.name} </p>
+                <p className="formInput_title">Возраст <input className="formInput_age" id="age" type="text" name="age" value={user.age} placeholder="Введите возраст" onChange={handleChange}/></p>
+                <p className="formError">{errors.age}</p>
+                <p className="formInput_title">Пароль <input className="formInput_password" id="password" type="password" name="password" value={user.password} placeholder="Введите пароль" onChange={handleChange} /></p>
+                <p className="formError">{errors.password}</p>
+                </div>
+                <button className="formBtn" onClick={handleSubmit}>Готово</button> 
             </form>
+            <Info users = {info} /> {/*users - переменная-объект-пропс, а info Это стейт */}
         </div>
     )
 }
