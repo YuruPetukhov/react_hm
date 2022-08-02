@@ -1,0 +1,28 @@
+.form {
+margin: 50px 20px 0px;
+}
+
+.formButton{
+    box-shadow: 10px 12px 5px -5px rgba(34, 60, 80, 0.6);
+    padding: 5px 15px;
+    border-radius: 8px; 
+    background-color: rgb(60, 196, 130);
+    color: azure;
+    border: 3px solid rgb(17, 72, 46) ;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 80px;
+}
+
+.formInput{
+    margin: 0px 10px;
+    box-shadow: 10px 12px 5px -5px rgba(34, 60, 80, 0.6);
+    padding: 7px 90px 7px 10px;
+    border-radius: 8px;
+    }
+
+.formError{
+color: red;
+font-size: 15px;
+font-style: oblique;
+    }
