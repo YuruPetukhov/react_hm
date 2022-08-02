@@ -1,13 +1,14 @@
 
 import './App.css';
-import  Main  from './components/main/main'
-import  Header  from './components/header/header'
+import List from './components/list/list';
+import Form from './components/form/form';
+
 
 function App() {
   return (
    <>
-<Header />
-<Main />
+<List />
+<Form />
    </>
   );
 }
