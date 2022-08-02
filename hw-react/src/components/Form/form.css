@@ -33,7 +33,15 @@ background-attachment: fixed;
     color: #fff;
     border: 2px dotted #ebeeab;
 }
-
+.formInput_name::placeholder, .formInput_password::placeholder, .formInput_age::placeholder{
+    color: #ebeeab;
+}
+.formInput_age:hover, .formInput_name:hover, .formInput_password:hover{
+    border: dotted 2px #6d19a8;
+}
+.formInput_age:focus, .formInput_name:focus, .formInput_password:focus{
+    border: dotted 2px white;
+}
 .formInput_age{
     margin-left: 180px;
     text-align: center;

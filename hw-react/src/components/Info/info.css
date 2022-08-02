@@ -4,3 +4,6 @@
     color: aliceblue;
     width: 500px;
 }
+.info_name{
+    text-transform: capitalize;
+}
