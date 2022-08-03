@@ -1,0 +1,11 @@
+.form{
+    text-align: center;
+}
+
+.submitButton{
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: rgb(98, 196, 98);
+    
+}
