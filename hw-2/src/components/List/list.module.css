@@ -1,0 +1,42 @@
+.table{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+    color: #9b43c2;
+    font-family:'Times New Roman', Times, serif;
+    text-decoration: none;
+
+}
+.listForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:30px ;
+}
+.listBtn {
+    background: #be90ff;
+    color: #fff;
+    border: 1px solid #d490ae;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #d490ae;
+    text-shadow: none;
+    cursor: pointer;
+    padding: 10px 60px;
+    font-size: 20px;
+    font-weight: 500;
+    transition: all .1s ease-in-out;
+    margin-top: 20px;
+}
+.listBtn:hover {
+    background: #a06ce7;
+    color: #fff;
+    border: 1px solid #d490ae;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #d490ae;
+    text-shadow: none;
+    transition: all .1s ease-in-out;
+}
